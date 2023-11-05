@@ -17,10 +17,14 @@ while len(guessed_states) < 50:
                                     prompt="What's another state name?").title()
     # title() method capitalizes the first letter of the string
     if answer_state == "Exit":
-        missing_state = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_state.append(state)
+        # without list comprehension
+        # missing_state = []
+        # for state in all_states:
+        #     if state not in guessed_states:
+        #         missing_state.append(state)
+
+        # with list comprehension
+        missing_state = [state for state in all_states if state not in guessed_states]
         new_data = pandas.DataFrame(missing_state)
         new_data.to_csv("states_to_learn.csv")
         break
